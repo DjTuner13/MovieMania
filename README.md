@@ -1,0 +1,1 @@
+movieDB Project will allow users to create a library of movies for the user to watch and store movies already watches. It will also allow users to get recommenations based off of their current list of "watch later"" movies.
