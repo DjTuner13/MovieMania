@@ -99,3 +99,6 @@ We welcome contributions to the MovieMania Project! To contribute, please follow
 Please ensure your code adheres to the project's coding standards and includes appropriate tests. If you have any questions, feel free to open an issue on GitHub.
 
 Thank you for contributing!
+
+Contributors
+   Eric Robinson
