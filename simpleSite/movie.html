@@ -7,14 +7,26 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="movie-details">
-        <h1 id="movie-title"></h1>
-        <div id="poster-container">
-            <img id="movie-poster" alt="Movie Poster" />
+    <div class="wrapper">
+        <div id="movie-details">
+            <h1 id="movie-title"></h1>
+            <div id="poster-container">
+                <img id="movie-poster" class="hidden" alt="Movie Poster" />
+            </div>
+            <p id="movie-overview"></p>
+            <p id="movie-release-date"></p>
+            <p id="movie-genres"></p>
+            <div id="trailer-container">
+                <button id="movie-trailer">Watch Trailer</button>
+            </div>
         </div>
-        <p id="movie-overview"></p>
-        <p id="movie-release-date"></p>
-        <p id="movie-genres"></p>
+    </div>
+
+    <div id="trailer-modal" class="modal">
+        <div id="modal-background" class="modal-background"></div>
+        <div class="modal-content">
+            <iframe id="trailer-frame" type="text/html" src="" allowfullscreen></iframe>
+        </div>
     </div>
 
     <script src="config.js"></script>
