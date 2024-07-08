@@ -4,30 +4,78 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>JSONBin Data Display</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      background-color: #f4f4f4;
+    }
+    #jsonDataDisplay {
+      background-color: #fff;
+      padding: 20px;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      max-width: 800px;
+      margin: 0 auto;
+      overflow-x: auto;
+    }
+    .json-object {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fafafa;
+    }
+    .json-object h3 {
+      margin: 0 0 10px 0;
+      font-size: 18px;
+    }
+    .json-object pre {
+      margin: 0;
+      white-space: pre-wrap;
+      word-wrap: break-word;
+    }
+  </style>
 </head>
 <body>
 
+<h1>JSONBin Data Display</h1>
 <div id="jsonDataDisplay"></div>
 
-<!-- Include the getjsondata.js script -->
 <script src="config.js"></script>
 <script src="./jsScripts/GetJsonData.js"></script>
 
 <script>
   const displayJsonData = async () => {
-	try {
-	  const jsonData = await getJSONData();
-	  const jsonDataDisplay = document.getElementById('jsonDataDisplay');
-  
-	  // Clear previous content
-	  jsonDataDisplay.innerHTML = '';
-  
-	  // Display the JSON data directly in the div
-	  jsonDataDisplay.innerHTML = jsonData; 
-  
-	} catch (error) {
-	  console.error('Error:', error.message);
-	}
+    try {
+      const jsonData = await getJSONData();
+      const jsonDataDisplay = document.getElementById('jsonDataDisplay');
+
+      // Clear previous content
+      jsonDataDisplay.innerHTML = '';
+
+      // Parse JSON data
+      const parsedData = JSON.parse(jsonData);
+
+      // Iterate through each user and display their data
+      parsedData.forEach((user, index) => {
+        const userDiv = document.createElement('div');
+        userDiv.classList.add('json-object');
+
+        const userHeader = document.createElement('h3');
+        userHeader.textContent = `User ${index + 1}`;
+        userDiv.appendChild(userHeader);
+
+        const userInfo = document.createElement('pre');
+        userInfo.textContent = JSON.stringify(user, null, 2);
+        userDiv.appendChild(userInfo);
+
+        jsonDataDisplay.appendChild(userDiv);
+      });
+    } catch (error) {
+      console.error('Error:', error.message);
+    }
   };
 
   // Call the function when the page loads

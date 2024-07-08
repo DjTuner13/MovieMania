@@ -1,23 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Mania - Add Movie to Watch List</title>
-  </head>
-  <body>
-    <h1>Add Movie to Watch List</h1>
-    <form id="addMovieForm">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" required /><br /><br />
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Mania - Add Movie to Watch List</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
-      <label for="movieID">Movie ID:</label>
-      <input type="text" id="movieID" name="movieID" required /><br /><br />
+    h1 {
+      color: #333;
+    }
 
-      <button type="submit">Add Movie</button>
-    </form>
+    #addMovieForm {
+      background: #fff;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
 
-    <script src="config.js"></script>
-    <script src="./jsScripts/addMovie.js"></script>
-  </body>
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input {
+      width: 100%;
+      padding: 8px;
+      margin-bottom: 16px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      box-sizing: border-box;
+    }
+
+    button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+
+    button:hover {
+      background-color: #45a049;
+    }
+  </style>
+</head>
+<body>
+  <h1>Add Movie to Watch List</h1>
+  <form id="addMovieForm">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" required />
+
+    <label for="movieID">Movie ID:</label>
+    <input type="text" id="movieID" name="movieID" />
+
+    <label for="movieName">Movie Name:</label>
+    <input type="text" id="movieName" name="movieName" />
+
+    <button type="submit">Add Movie</button>
+  </form>
+
+  <script src="config.js"></script>
+  <script src="./jsScripts/addMovie.js"></script>
+</body>
 </html>
