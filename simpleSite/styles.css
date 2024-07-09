@@ -1,11 +1,13 @@
 body {
-  background-color: #2a3545;
-  color: #fbcc06;
-  margin: 0;
+  background-color: #00334D;
+  margin: 1;
   padding: 20px;
-  font-family: Arial, sans-serif;
-  text-align: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  text-align: left;
+  background-image: url('movieblur.webp');
+  background-size: cover;
 }
+
 
 .wrapper {
   display: flex;
@@ -20,10 +22,31 @@ body {
 }
 
 h1 {
-  color: #23ccf7;
+  color: #ffffff ;
   margin-bottom: 20px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 40px;
+  font-weight: bolder;
 }
 
+h2 {
+  color: #ffffff;
+  font-size: 40px;
+  text-align: center;
+  padding-top: 70px;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-weight:bold;
+
+}
+p{
+
+  color: #ffffff;
+  text-align: center;
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: 35px;
+  font-style:normal;  
+
+}
 .movies-container {
   display: flex;
   overflow-x: auto;
