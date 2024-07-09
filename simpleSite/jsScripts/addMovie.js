@@ -5,34 +5,26 @@ document
 
     const email = document.getElementById("email").value;
     const movieID = document.getElementById("movieID").value;
+    const movieName = document.getElementById("movieName").value;
+
+    if (!movieID && !movieName) {
+      alert("Please provide either a Movie ID or a Movie Name.");
+      return;
+    }
 
     try {
-      // Fetch movie details from Movie Database API
-      const movieDbUrl = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${config.MOVIE_DB_API_KEY}`;
-      const movieResponse = await fetch(movieDbUrl, {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${config.BEARER_TOKEN}`,
-          accept: "application/json",
-        },
-      });
+      let movieDetails;
 
-      if (!movieResponse.ok) {
-        throw new Error("Failed to fetch movie details.");
+      if (movieID) {
+        movieDetails = await fetchMovieByID(movieID);
+      } else {
+        movieDetails = await fetchMovieByName(movieName);
       }
 
-      const movieData = await movieResponse.json();
-
-      const movieDetails = {
-        movieID: movieData.id,
-        moviePreviewUrl: movieData.poster_path
-          ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}`
-          : "",
-        movieInfo: movieData.overview || "",
-        movieGenre: Array.isArray(movieData.genre_ids)
-          ? movieData.genre_ids.map((genreId) => genreId.toString()).join(", ")
-          : "",
-      };
+      if (!movieDetails) {
+        alert("Movie not found. Please check the details and try again.");
+        return;
+      }
 
       // Fetch existing data from JSONbin
       const binId = `${config.BIN_ID}`;
@@ -90,3 +82,60 @@ document
       alert("An error occurred while adding the movie to the watch list.");
     }
   });
+
+async function fetchMovieByID(movieID) {
+  const movieDbUrl = `https://api.themoviedb.org/3/movie/${movieID}?api_key=${config.MOVIE_DB_API_KEY}`;
+  const response = await fetch(movieDbUrl, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      accept: "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const movieData = await response.json();
+    return {
+      movieID: movieData.id,
+      moviePreviewUrl: movieData.poster_path
+        ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}`
+        : "",
+      movieInfo: movieData.overview || "",
+      movieGenre: Array.isArray(movieData.genre_ids)
+        ? movieData.genre_ids.map((genreId) => genreId.toString()).join(", ")
+        : "",
+    };
+  } else {
+    return null;
+  }
+}
+
+async function fetchMovieByName(movieName) {
+  const movieDbUrl = `https://api.themoviedb.org/3/search/movie?api_key=${config.MOVIE_DB_API_KEY}&query=${encodeURIComponent(movieName)}`;
+  const response = await fetch(movieDbUrl, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${config.BEARER_TOKEN}`,
+      accept: "application/json",
+    },
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    if (data.results.length > 0) {
+      const movie = data.results[0];
+      return {
+        movieID: movie.id,
+        moviePreviewUrl: movie.poster_path
+          ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+          : "",
+        movieInfo: movie.overview || "",
+        movieGenre: movie.genre_ids.join(", "),
+      };
+    } else {
+      return null;
+    }
+  } else {
+    return null;
+  }
+}
