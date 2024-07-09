@@ -40,10 +40,6 @@ document
       const user = records.find((user) => user.email === loginEmail);
 
       if (user) {
-        // Log the passwords for debugging
-        console.log(`Password from database: ${user.loginPassword}`);
-        console.log(`Entered password: ${loginPassword}`);
-
         // Check if the user has a password
         if (!user.loginPassword) {
           alert(
@@ -58,9 +54,7 @@ document
           // Redirect to topMovies.html after successful login
           window.location.href = "topMovies.html";
         } else {
-          alert(
-            `Invalid email or password. Should be ${user.loginPassword} but is ${loginPassword}`
-          );
+          alert(`Invalid email or password.`);
         }
       } else {
         alert("Account not found.");
