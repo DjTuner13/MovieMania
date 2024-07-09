@@ -45,13 +45,17 @@ document
 
       let existingData = await existingDataResponse.json();
 
-      // Check if the fetched data is an array, if not, initialize it as an array
-      if (!Array.isArray(existingData)) {
-        existingData = [];
+      // Ensure the data is an array of users
+      if (!Array.isArray(existingData.record)) {
+        existingData.record = [];
       }
 
+      console.log("Fetched data:", existingData.record);
+
       // Find user by email
-      const user = existingData.find((user) => user.email === email);
+      const user = existingData.record.find(
+        (user) => user.email.toLowerCase() === email.toLowerCase()
+      );
 
       if (user) {
         // Append to the existing user's watch list
@@ -64,7 +68,7 @@ document
             "X-Master-Key": apiKey,
             "Content-Type": "application/json",
           },
-          body: JSON.stringify(existingData),
+          body: JSON.stringify({ record: existingData.record }),
         });
 
         if (updateResponse.status === 200) {
@@ -101,8 +105,8 @@ async function fetchMovieByID(movieID) {
         ? `https://image.tmdb.org/t/p/w500${movieData.poster_path}`
         : "",
       movieInfo: movieData.overview || "",
-      movieGenre: Array.isArray(movieData.genre_ids)
-        ? movieData.genre_ids.map((genreId) => genreId.toString()).join(", ")
+      movieGenre: Array.isArray(movieData.genres)
+        ? movieData.genres.map((genre) => genre.name).join(", ")
         : "",
     };
   } else {
@@ -111,7 +115,9 @@ async function fetchMovieByID(movieID) {
 }
 
 async function fetchMovieByName(movieName) {
-  const movieDbUrl = `https://api.themoviedb.org/3/search/movie?api_key=${config.MOVIE_DB_API_KEY}&query=${encodeURIComponent(movieName)}`;
+  const movieDbUrl = `https://api.themoviedb.org/3/search/movie?api_key=${
+    config.MOVIE_DB_API_KEY
+  }&query=${encodeURIComponent(movieName)}`;
   const response = await fetch(movieDbUrl, {
     method: "GET",
     headers: {
