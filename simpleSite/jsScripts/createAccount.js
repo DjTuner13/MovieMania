@@ -1,9 +1,9 @@
 document
-  .getElementById("createAccountForm")
+  .getElementById("createForm")
   .addEventListener("submit", async function (e) {
     e.preventDefault();
 
-    const email = document.getElementById("email").value;
+    const email = document.getElementById("createEmail").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
     const loginPassword = document.getElementById("loginPassword").value;
@@ -16,8 +16,8 @@ document
     };
 
     try {
-      const binId = `${config.BIN_ID}`;
-      const apiKey = `${config.JSON_API_KEY}`;
+      const binId = config.BIN_ID;
+      const apiKey = config.JSON_API_KEY;
       const url = `https://api.jsonbin.io/v3/b/${binId}?meta=false`;
 
       // Fetch existing data
@@ -35,13 +35,14 @@ document
 
       let existingData = await existingDataResponse.json();
 
-      // Check if the fetched data is an array, if not, initialize it as an array
-      if (!Array.isArray(existingData)) {
-        existingData = [];
+      // Ensure the data is in the expected format
+      let records = existingData.record;
+      if (!Array.isArray(records)) {
+        records = [];
       }
 
       // Add new account to existing data
-      existingData.push(newAccount);
+      records.push(newAccount);
 
       // Update the bin with the new data
       const updateResponse = await fetch(url, {
@@ -50,13 +51,13 @@ document
           "X-Master-Key": apiKey,
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(existingData),
+        body: JSON.stringify({ record: records }),
       });
 
       if (updateResponse.status === 200) {
         alert("Account created successfully!");
         // Clear the form
-        document.getElementById("createAccountForm").reset();
+        document.getElementById("createForm").reset();
       } else {
         alert("Failed to create account.");
       }
