@@ -6,7 +6,7 @@ document
     const email = document.getElementById("createEmail").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
-    const loginPassword = document.getElementById("loginPassword").value;
+    const loginPassword = document.getElementById("createPassword").value;
     const newAccount = {
       email,
       firstName,
