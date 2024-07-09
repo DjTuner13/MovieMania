@@ -1,34 +1,25 @@
-const getJSONData = async () => {
+async function getJSONData() {
+  try {
+    const binId = config.BIN_ID;
+    const apiKey = config.JSON_API_KEY;
+    const jsonbinUrl = `https://api.jsonbin.io/v3/b/${binId}?meta=false`;
 
-// REPLACE YOUR_BIN_ID with the actual ID of your bin
-const binId = `${config.BIN_ID}` 
+    const response = await fetch(jsonbinUrl, {
+      method: "GET",
+      headers: {
+        "X-Master-Key": apiKey,
+        "Content-Type": "application/json",
+      },
+    });
 
-// Replace YOUR_API_KEY with your JSONbin.io API key
-const apiKey = `${config.JSON_API_KEY}` 
+    if (!response.ok) {
+      throw new Error("Failed to fetch existing data.");
+    }
 
-const url = "https://api.jsonbin.io/v3/b/"+binId+"?meta=false";
-//const url = ”https://api.jsonbin.io/v3/b/”+binId+"?meta=false";
-
-	const response = await fetch(url,
-		{
-			method: 'GET',
-			headers: {
-				'X-Master-Key': apiKey,
-				'Content-Type': 'application/json'
-			}
-		}
-	);
-  if (response.status !== 200) {
-	throw new Error("cannot fetch data");
+    const data = await response.json();
+    return data.record;
+  } catch (error) {
+    console.error("Error:", error.message);
+    return [];
   }
-  let data = await response.json();
-  
-  // Remove the "metadata" and "records" keys from the object
-	delete data.metadata;
-	delete data.records;
-
-	//Convert the modified object back into a JSON string
-	data = JSON.stringify(data);
-	//this works
-	return data;
-};
+}
