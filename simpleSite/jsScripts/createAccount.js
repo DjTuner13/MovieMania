@@ -6,11 +6,12 @@ document
     const email = document.getElementById("email").value;
     const firstName = document.getElementById("firstName").value;
     const lastName = document.getElementById("lastName").value;
-
+    const loginPassword = document.getElementById("loginPassword").value;
     const newAccount = {
       email,
       firstName,
       lastName,
+      loginPassword,
       watchMovieList: [],
     };
 
