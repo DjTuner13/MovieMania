@@ -3,14 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Details</title>
+    <title>Movie Mania - My Watchlist</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header>
       <nav>
-        <div class="logo"><a href="index.html">Movie Mania</a></div>
+        <div class="logo">Movie Mania</div>
         <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
           <li><a href="#">Trending</a></li>
           <li><a href="#">Top Rated</a></li>
           <li><a href="#">New Releases</a></li>
@@ -36,31 +37,9 @@
     </header>
 
     <div class="wrapper">
-      <div id="movie-details">
-        <h1 id="movie-title"></h1>
-        <div id="poster-container">
-          <img id="movie-poster" class="hidden" alt="Movie Poster" />
-        </div>
-        <p id="movie-overview"></p>
-        <p id="movie-release-date"></p>
-        <p id="movie-genres"></p>
-        <div id="trailer-container">
-          <button id="movie-trailer">Watch Trailer</button>
-        </div>
-        <button id="toggle-watchlist">Add to Watchlist</button>
-      </div>
-    </div>
-
-    <div id="trailer-modal" class="modal">
-      <div id="modal-background" class="modal-background"></div>
-      <div class="modal-content">
-        <iframe
-          id="trailer-frame"
-          type="text/html"
-          src=""
-          allowfullscreen
-          title="Movie Trailer"
-        ></iframe>
+      <div class="container">
+        <h1>My Watchlist</h1>
+        <div id="watchlist-container" class="watchlist-container"></div>
       </div>
     </div>
 
@@ -68,14 +47,6 @@
     <script src="jsScripts/getJsonData.js"></script>
     <script src="jsScripts/setUserName.js"></script>
     <script src="jsScripts/signout.js"></script>
-    <script src="jsScripts/fetchMoviePoster.js"></script>
-    <script src="jsScripts/toggleWatchlist.js"></script>
-    <script>
-      document
-        .getElementById("watchlist-button")
-        .addEventListener("click", () => {
-          window.location.href = "watchlist.html";
-        });
-    </script>
+    <script src="jsScripts/watchlist.js"></script>
   </body>
 </html>
