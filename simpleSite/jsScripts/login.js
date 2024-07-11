@@ -50,9 +50,10 @@ document
             loginEmail
           )}`;
         } else if (user.loginPassword === loginPassword) {
-          alert("Login successful!");
-          // Redirect to topMovies.html after successful login
-          window.location.href = "topMovies.html";
+          // Store user info in localStorage
+          localStorage.setItem("currentUser", JSON.stringify(user));
+          // Redirect to index.html after successful login
+          window.location.href = "index.html";
         } else {
           alert(`Invalid email or password.`);
         }
