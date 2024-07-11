@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Details</title>
+    <title>Movie Mania - Home</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -36,31 +36,12 @@
     </header>
 
     <div class="wrapper">
-      <div id="movie-details">
-        <h1 id="movie-title"></h1>
-        <div id="poster-container">
-          <img id="movie-poster" class="hidden" alt="Movie Poster" />
-        </div>
-        <p id="movie-overview"></p>
-        <p id="movie-release-date"></p>
-        <p id="movie-genres"></p>
-        <div id="trailer-container">
-          <button id="movie-trailer">Watch Trailer</button>
-        </div>
-        <button id="toggle-watchlist">Add to Watchlist</button>
-      </div>
-    </div>
+      <div class="container">
+        <h1>Top 20 Popular Movies</h1>
+        <div id="popular-movies-container" class="movies-container"></div>
 
-    <div id="trailer-modal" class="modal">
-      <div id="modal-background" class="modal-background"></div>
-      <div class="modal-content">
-        <iframe
-          id="trailer-frame"
-          type="text/html"
-          src=""
-          allowfullscreen
-          title="Movie Trailer"
-        ></iframe>
+        <h1>Top 20 Rated Movies</h1>
+        <div id="top-rated-movies-container" class="movies-container"></div>
       </div>
     </div>
 
@@ -68,8 +49,8 @@
     <script src="jsScripts/getJsonData.js"></script>
     <script src="jsScripts/setUserName.js"></script>
     <script src="jsScripts/signout.js"></script>
-    <script src="jsScripts/fetchMoviePoster.js"></script>
-    <script src="jsScripts/toggleWatchlist.js"></script>
+    <script src="jsScripts/fetchMovies.js"></script>
+    <script src="jsScripts/watchlist.js"></script>
     <script>
       document
         .getElementById("watchlist-button")
