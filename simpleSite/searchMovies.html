@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Movie Mania - Search Movies</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+      margin: 0;
+    }
+    h1 {
+      color: #333;
+    }
+    form {
+      margin-bottom: 20px;
+    }
+    input {
+      padding: 10px;
+      margin-right: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 16px;
+    }
+    button {
+      padding: 10px 20px;
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .movie-list {
+      list-style-type: none;
+      padding: 0;
+      width: 100%;
+      max-width: 600px;
+    }
+    .movie-item {
+      background: #fff;
+      margin: 10px 0;
+      padding: 15px;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+    }
+    .movie-poster {
+      max-width: 100px;
+      border-radius: 8px;
+      margin-right: 15px;
+    }
+    .movie-details {
+      flex: 1;
+    }
+  </style>
+</head>
+<body>
+  <h1>Movie Mania - Search Movies</h1>
+  <form id="searchForm">
+    <input type="text" id="query" placeholder="Search for a movie..." required />
+    <button type="submit">Search</button>
+  </form>
+  <ul id="movieList" class="movie-list"></ul>
+
+  <script src="config.js"></script>
+  <script src="./jsScripts/searchMovies.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const query = urlParams.get('query');
+      if (query) {
+        document.getElementById("query").value = query;
+        performSearch(query);
+      }
+    });
+
+    function performSearch(query) {
+      const apiKey = config.API_KEY;
+      const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+
+      fetch(url)
+        .then(response => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch movies.");
+          }
+          return response.json();
+        })
+        .then(data => {
+          const movies = data.results;
+          const movieList = document.getElementById("movieList");
+          movieList.innerHTML = "";
+
+          if (movies.length === 0) {
+            movieList.innerHTML = "<li>No movies found.</li>";
+            return;
+          }
+
+          movies.forEach(movie => {
+            const movieItem = document.createElement("li");
+            movieItem.className = "movie-item";
+            const posterUrl = movie.poster_path ? `https://image.tmdb.org/t/p/w500${movie.poster_path}` : "placeholder.jpg";
+            movieItem.innerHTML = `
+              <img src="${posterUrl}" alt="${movie.title}" class="movie-poster">
+              <div class="movie-details">
+                <h3>${movie.title} (${movie.release_date ? movie.release_date.split('-')[0] : 'N/A'})</h3>
+                <p>${movie.overview}</p>
+              </div>
+            `;
+            movieList.appendChild(movieItem);
+          });
+        })
+        .catch(error => {
+          console.error("Error:", error);
+          alert("An error occurred while searching for movies.");
+        });
+    }
+
+    document.getElementById("searchForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      const query = document.getElementById("query").value;
+      performSearch(query);
+    });
+  </script>
+</body>
+</html>
