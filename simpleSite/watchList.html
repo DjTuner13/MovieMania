@@ -9,9 +9,8 @@
   <body>
     <header>
       <nav>
-        <div class="logo">Movie Mania</div>
+        <div class="logo"><a href="index.html">Movie Mania</a></div>
         <ul class="nav-links">
-          <li><a href="index.html">Home</a></li>
           <li><a href="#">Trending</a></li>
           <li><a href="#">Top Rated</a></li>
           <li><a href="#">New Releases</a></li>
@@ -30,12 +29,18 @@
           </div>
         </div>
         <div class="search-bar">
-          <input type="text" placeholder="Search for a movie..." />
-          <button type="button">Search</button>
+          <form id="searchForm">
+            <input
+              type="text"
+              id="query"
+              placeholder="Search for a movie..."
+              required
+            />
+            <button type="submit">Search</button>
+          </form>
         </div>
       </nav>
     </header>
-
     <div class="wrapper">
       <div class="container">
         <h1>My Watchlist</h1>
@@ -48,5 +53,6 @@
     <script src="jsScripts/setUserName.js"></script>
     <script src="jsScripts/signout.js"></script>
     <script src="jsScripts/watchlist.js"></script>
+    <script src="jsScripts/navbar.js"></script>
   </body>
 </html>

@@ -89,11 +89,6 @@ document.addEventListener("DOMContentLoaded", async () => {
         toggleWatchlistButton.textContent = movieExists
           ? "Add to Watchlist"
           : "Remove from Watchlist";
-        alert(
-          `Movie ${
-            movieExists ? "removed from" : "added to"
-          } watchlist successfully!`
-        );
       } else {
         alert(
           `Failed to ${
