@@ -1,64 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Movie Mania - Home</title>
-  <link rel="stylesheet" href="styles.css" />
-</head>
-<body>
-  <header>
-    <nav>
-      <div class="logo"><a href="index.html">Movie Mania</a></div>
-      <ul class="nav-links">
-        <li><a href="#">Trending</a></li>
-        <li><a href="#">Top Rated</a></li>
-        <li><a href="#">New Releases</a></li>
-      </ul>
-      <div class="user-options">
-        <button class="watchlist-btn" id="watchlist-button">My WatchList</button>
-        <div class="dropdown">
-          <button class="dropbtn">Hi, <span id="user-first-name">User</span></button>
-          <div class="dropdown-content">
-            <a href="#" id="sign-out">Sign Out</a>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie Mania - Home</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <nav>
+        <div class="logo"><a href="index.html">Movie Mania</a></div>
+        <ul class="nav-links">
+          <li><a href="#">Trending</a></li>
+          <li><a href="#">Top Rated</a></li>
+          <li><a href="#">New Releases</a></li>
+        </ul>
+        <div class="user-options">
+          <button class="watchlist-btn" id="watchlist-button">
+            My WatchList
+          </button>
+          <div class="dropdown">
+            <button class="dropbtn">
+              Hi, <span id="user-first-name">User</span>
+            </button>
+            <div class="dropdown-content">
+              <a href="#" id="sign-out">Sign Out</a>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="search-bar">
-        <form id="searchForm">
-          <input type="text" id="query" placeholder="Search for a movie..." required />
-          <button type="submit">Search</button>
-        </form>
-      </div>
-    </nav>
-  </header>
+        <div class="search-bar">
+          <form id="searchForm">
+            <input
+              type="text"
+              id="query"
+              placeholder="Search for a movie..."
+              required
+            />
+            <button type="submit">Search</button>
+          </form>
+        </div>
+      </nav>
+    </header>
 
-  <div class="wrapper">
-    <div class="container">
-      <h1>Top 20 Popular Movies</h1>
-      <div id="popular-movies-container" class="movies-container"></div>
+    <div class="wrapper">
+      <div class="container">
+        <h1>Top 20 Popular Movies</h1>
+        <div id="popular-movies-container" class="movies-container"></div>
 
-      <h1>Top 20 Rated Movies</h1>
-      <div id="top-rated-movies-container" class="movies-container"></div>
+        <h1>Top 20 Rated Movies</h1>
+        <div id="top-rated-movies-container" class="movies-container"></div>
+      </div>
     </div>
-  </div>
 
-  <script src="config.js"></script>
-  <script src="jsScripts/getJsonData.js"></script>
-  <script src="jsScripts/setUserName.js"></script>
-  <script src="jsScripts/signout.js"></script>
-  <script src="jsScripts/fetchMovies.js"></script>
-  <script src="jsScripts/watchlist.js"></script>
-  <script>
-    document.getElementById("searchForm").addEventListener("submit", function(e) {
-      e.preventDefault();
-      const query = document.getElementById("query").value;
-      window.location.href = `searchMovies.html?query=${encodeURIComponent(query)}`;
-    });
-
-    document.getElementById("watchlist-button").addEventListener("click", () => {
-      window.location.href = "watchlist.html";
-    });
-  </script>
-</body>
+    <script src="config.js"></script>
+    <script src="jsScripts/getJsonData.js"></script>
+    <script src="jsScripts/setUserName.js"></script>
+    <script src="jsScripts/signout.js"></script>
+    <script src="jsScripts/fetchMovies.js"></script>
+    <script src="jsScripts/watchlist.js"></script>
+    <script src="jsScripts/navbar.js"></script>
+  </body>
 </html>

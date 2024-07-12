@@ -29,8 +29,15 @@
           </div>
         </div>
         <div class="search-bar">
-          <input type="text" placeholder="Search for a movie..." />
-          <button type="button">Search</button>
+          <form id="searchForm">
+            <input
+              type="text"
+              id="query"
+              placeholder="Search for a movie..."
+              required
+            />
+            <button type="submit">Search</button>
+          </form>
         </div>
       </nav>
     </header>
@@ -70,12 +77,7 @@
     <script src="jsScripts/signout.js"></script>
     <script src="jsScripts/fetchMoviePoster.js"></script>
     <script src="jsScripts/toggleWatchlist.js"></script>
-    <script>
-      document
-        .getElementById("watchlist-button")
-        .addEventListener("click", () => {
-          window.location.href = "watchlist.html";
-        });
-    </script>
+    <script src="jsScripts/navbar.js"></script>
+    <script src="jsScripts/1movie.js"></script>
   </body>
 </html>
