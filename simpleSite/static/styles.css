@@ -78,14 +78,14 @@ nav {
   padding: 5px 10px;
   font-size: 16px;
   border: none;
-  background-color: #fb2c11;
+  background-color: #48c3d6;
   color: white;
   border-radius: 0 4px 4px 0;
   cursor: pointer;
 }
 
 .search-bar button:hover {
-  background-color: hsl(0, 83%, 43%);
+  background-color: #1ba3cc;
 }
 
 .wrapper {
@@ -214,7 +214,7 @@ p {
 
 #movie-trailer {
   padding: 10px 20px;
-  background-color: #23ccf7;
+  background-color: #48c3d6;
   color: #2a3545;
   border: none;
   border-radius: 5px;
@@ -277,7 +277,7 @@ p {
 }
 
 .watchlist-btn {
-  background-color: #fb2c11;
+  background-color: #48c3d6;
   color: white;
   padding: 5px 10px;
   border: none;
@@ -288,7 +288,7 @@ p {
 }
 
 .watchlist-btn:hover {
-  background-color: hsl(0, 83%, 43%);
+  background-color: #1ba3cc;
 }
 
 .dropdown {
