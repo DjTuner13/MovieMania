@@ -4,7 +4,7 @@ body {
   padding: 20px;
   font-family: "Franklin Gothic Medium", "Arial Narrow", Arial, sans-serif;
   text-align: left;
-  background-image: url("movieblur.webp");
+  background-image: url("blur.png");
   background-size: cover;
 }
 
