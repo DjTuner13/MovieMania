@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Top 20 Movies</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .user-info {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background-color: #f0f0f0;
+      padding: 10px;
+      border-radius: 5px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+      font-family: 'Poppins', sans-serif;
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+  <div class="user-info" id="user-info"></div>
+  <div class="container">
+    <h1>Top 20 Popular Movies</h1>
+    <div id="popular-movies-container" class="movies-container"></div>
+
+    <h1>Top 20 Rated Movies</h1>
+    <div id="top-rated-movies-container" class="movies-container"></div>
+  </div>
+
+  <script src="config.js"></script>
+  <script src="jsScripts/fetchMovies.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      const userInfoDiv = document.getElementById('user-info');
+      const loggedInUser = localStorage.getItem('loggedInUser'); // Assuming user info is stored in localStorage
+
+      if (loggedInUser) {
+        const user = JSON.parse(loggedInUser);
+        userInfoDiv.textContent = `Logged in as: ${user.firstName} ${user.lastName}`;
+      } else {
+        userInfoDiv.textContent = 'Not logged in';
+      }
+    });
+  </script>
+</body>
+</html>

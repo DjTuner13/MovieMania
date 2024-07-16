@@ -41,6 +41,13 @@ document
         records = [];
       }
 
+      // Check if the email already exists
+      const emailExists = records.some((record) => record.email === email);
+      if (emailExists) {
+        alert("An account with this email already exists.");
+        return; // Stop further execution
+      }
+
       // Add new account to existing data
       records.push(newAccount);
 
