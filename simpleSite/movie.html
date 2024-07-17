@@ -4,6 +4,10 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie Details</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="static/styles.css" />
   </head>
   <body>
@@ -42,8 +46,9 @@
       </nav>
     </header>
 
-    <div class="wrapper">
+    <main class="wrapper">
       <div id="movie-details">
+        <button id="back-button">Back</button>
         <h1 id="movie-title"></h1>
         <div id="poster-container">
           <img id="movie-poster" class="hidden" alt="Movie Poster" />
@@ -56,7 +61,7 @@
         </div>
         <button id="toggle-watchlist">Add to Watchlist</button>
       </div>
-    </div>
+    </main>
 
     <div id="trailer-modal" class="modal">
       <div id="modal-background" class="modal-background"></div>
@@ -79,5 +84,12 @@
     <script src="jsScripts/toggleWatchlist.js"></script>
     <script src="jsScripts/navbar.js"></script>
     <script src="jsScripts/1movie.js"></script>
+    <script>
+      document
+        .getElementById("back-button")
+        .addEventListener("click", function () {
+          window.history.back();
+        });
+    </script>
   </body>
 </html>

@@ -3,10 +3,14 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Movie Mania - My Watchlist</title>
+    <title>My Watchlist</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="static/styles.css" />
   </head>
-  <body>
+  <body class="watchlist-body">
     <header>
       <nav>
         <div class="logo"><a href="index.html">Movie Mania</a></div>
@@ -16,9 +20,6 @@
           <li><a href="#">New Releases</a></li>
         </ul>
         <div class="user-options">
-          <button class="watchlist-btn" id="watchlist-button">
-            My WatchList
-          </button>
           <div class="dropdown">
             <button class="dropbtn">
               Hi, <span id="user-first-name">User</span>
@@ -42,7 +43,7 @@
       </nav>
     </header>
     <div class="wrapper">
-      <div class="container">
+      <div class="watchlist-container-outer">
         <h1>My Watchlist</h1>
         <div id="watchlist-container" class="watchlist-container"></div>
       </div>
