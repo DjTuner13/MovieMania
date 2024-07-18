@@ -1,6 +1,7 @@
 document.addEventListener("DOMContentLoaded", async () => {
   const urlParams = new URLSearchParams(window.location.search);
-  const movieId = urlParams.get("id");
+  const mediaId = urlParams.get("id");
+  const mediaType = urlParams.get("media_type"); // Either 'movie' or 'tv'
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (!currentUser || !currentUser.email) {
@@ -34,24 +35,26 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error("User not found.");
     }
 
-    const movieExists = user.watchMovieList.some(
-      (movie) => movie.movieID === parseInt(movieId)
+    const itemExists = user.watchMovieList.some(
+      (item) =>
+        item.mediaID === parseInt(mediaId) && item.mediaType === mediaType
     );
 
-    if (movieExists) {
+    if (itemExists) {
       toggleWatchlistButton.textContent = "Remove from Watchlist";
     } else {
       toggleWatchlistButton.textContent = "Add to Watchlist";
     }
 
     toggleWatchlistButton.addEventListener("click", async () => {
-      if (movieExists) {
+      if (itemExists) {
         user.watchMovieList = user.watchMovieList.filter(
-          (movie) => movie.movieID !== parseInt(movieId)
+          (item) =>
+            item.mediaID !== parseInt(mediaId) || item.mediaType !== mediaType
         );
       } else {
-        const movieDetailsApiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${config.API_KEY}`;
-        const response = await fetch(movieDetailsApiUrl, {
+        const mediaDetailsApiUrl = `https://api.themoviedb.org/3/${mediaType}/${mediaId}?api_key=${config.API_KEY}`;
+        const response = await fetch(mediaDetailsApiUrl, {
           method: "GET",
           headers: {
             Authorization: `Bearer ${config.BEARER_TOKEN}`,
@@ -60,20 +63,21 @@ document.addEventListener("DOMContentLoaded", async () => {
         });
 
         if (!response.ok) {
-          throw new Error("Failed to fetch movie details.");
+          throw new Error("Failed to fetch media details.");
         }
 
         const data = await response.json();
-        const movieDetails = {
-          movieID: data.id,
-          moviePreviewUrl: data.poster_path
+        const mediaDetails = {
+          mediaID: data.id,
+          mediaType: mediaType,
+          mediaPreviewUrl: data.poster_path
             ? `https://image.tmdb.org/t/p/w500${data.poster_path}`
             : "",
-          movieInfo: data.overview || "",
-          movieGenre: data.genres.map((genre) => genre.name).join(", "),
+          mediaInfo: data.overview || "",
+          mediaGenre: data.genres.map((genre) => genre.name).join(", "),
         };
 
-        user.watchMovieList.push(movieDetails);
+        user.watchMovieList.push(mediaDetails);
       }
 
       const updateResponse = await fetch(jsonbinUrl, {
@@ -86,13 +90,13 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       if (updateResponse.ok) {
-        toggleWatchlistButton.textContent = movieExists
+        toggleWatchlistButton.textContent = itemExists
           ? "Add to Watchlist"
           : "Remove from Watchlist";
       } else {
         alert(
           `Failed to ${
-            movieExists ? "remove movie from" : "add movie to"
+            itemExists ? "remove item from" : "add item to"
           } watchlist.`
         );
       }
