@@ -13,7 +13,7 @@ body {
   background-image: url("blur.png");
   background-size: cover;
   background-position: center;
-}
+} 
 
 /* Fixed navigation bar styles */
 header {
@@ -509,3 +509,23 @@ h1 {
 #back-button:hover {
   background-color: #006dbe;
 }
+
+.welcome-body {
+  background-color: #002b36;
+  font-family: "Roboto", "Franklin Gothic Medium", "Arial Narrow", Arial,
+    sans-serif;
+  text-align: center;
+  background-image: url("blur.png");
+  background-size: cover;
+  background-position: center;
+  color: #ffffff;
+} 
+
+.welcome-body p {
+  margin-bottom: 60px; /* Adjust the value as needed */
+}
+
+.welcome-body h2 {
+  margin-top: 30px; /* Adjust the value as needed */
+}
+
