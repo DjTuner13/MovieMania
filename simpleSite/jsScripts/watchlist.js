@@ -40,35 +40,41 @@ function displayWatchlist(watchlist) {
   const watchlistContainer = document.getElementById("watchlist-container");
   watchlistContainer.innerHTML = "";
 
-  watchlist.forEach((movie) => {
-    const movieElement = document.createElement("div");
-    movieElement.className = "movie-card";
+  watchlist.forEach((item) => {
+    const itemElement = document.createElement("div");
+    itemElement.className = "movie-card";
 
-    movieElement.innerHTML = `
-      <img src="${movie.moviePreviewUrl}" alt="${movie.movieInfo}" data-id="${movie.movieID}">
+    const title = item.mediaTitle || "No Title";
+    const info = item.mediaInfo || "No Info";
+
+    itemElement.innerHTML = `
+      <img src="${item.mediaPreviewUrl}" alt="${info}" data-id="${item.mediaID}" data-type="${item.mediaType}">
       <div class="movie-info">
-        <h3>${movie.movieInfo}</h3>
-        <button class="delete-button" data-id="${movie.movieID}">Delete</button>
+        <h3>${title}</h3>
+        <p>${info}</p>
+        <button class="delete-button" data-id="${item.mediaID}" data-type="${item.mediaType}">Delete</button>
       </div>
     `;
 
-    movieElement.querySelector("img").addEventListener("click", function () {
-      const movieId = this.getAttribute("data-id");
-      window.location.href = `movie.html?id=${movieId}&media_type=movie`;
+    itemElement.querySelector("img").addEventListener("click", function () {
+      const mediaId = this.getAttribute("data-id");
+      const mediaType = this.getAttribute("data-type");
+      window.location.href = `movie.html?id=${mediaId}&media_type=${mediaType}`;
     });
 
-    movieElement
+    itemElement
       .querySelector(".delete-button")
       .addEventListener("click", function () {
-        const movieId = this.getAttribute("data-id");
-        deleteMovieFromWatchlist(movieId);
+        const mediaId = this.getAttribute("data-id");
+        const mediaType = this.getAttribute("data-type");
+        deleteMovieFromWatchlist(mediaId, mediaType);
       });
 
-    watchlistContainer.appendChild(movieElement);
+    watchlistContainer.appendChild(itemElement);
   });
 }
 
-async function deleteMovieFromWatchlist(movieId) {
+async function deleteMovieFromWatchlist(mediaId, mediaType) {
   const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 
   if (!currentUser || !currentUser.email) {
@@ -98,7 +104,7 @@ async function deleteMovieFromWatchlist(movieId) {
 
     if (user) {
       user.watchMovieList = user.watchMovieList.filter(
-        (movie) => String(movie.movieID) !== String(movieId)
+        (item) => item.mediaID !== parseInt(mediaId) || item.mediaType !== mediaType
       );
 
       const updateResponse = await fetch(jsonbinUrl, {
@@ -113,14 +119,14 @@ async function deleteMovieFromWatchlist(movieId) {
       if (updateResponse.ok) {
         fetchUserWatchlist();
       } else {
-        alert("Failed to remove movie from watchlist.");
+        alert("Failed to remove item from watchlist.");
       }
     } else {
       alert("User not found.");
     }
   } catch (error) {
     console.error("Error:", error);
-    alert("An error occurred while removing the movie from the watchlist.");
+    alert("An error occurred while removing the item from the watchlist.");
   }
 }
 
