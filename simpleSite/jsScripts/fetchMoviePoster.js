@@ -1,10 +1,11 @@
 document.addEventListener("DOMContentLoaded", function () {
   const urlParams = new URLSearchParams(window.location.search);
-  const movieId = urlParams.get("id");
-  const movieDetailsApiUrl = `https://api.themoviedb.org/3/movie/${movieId}?api_key=${config.API_KEY}`;
-  const trailerApiUrl = `https://api.themoviedb.org/3/movie/${movieId}/videos`;
+  const mediaType = urlParams.get("media_type"); // Either 'movie' or 'tv'
+  const mediaId = urlParams.get("id");
+  const mediaDetailsApiUrl = `https://api.themoviedb.org/3/${mediaType}/${mediaId}?api_key=${config.API_KEY}`;
+  const trailerApiUrl = `https://api.themoviedb.org/3/${mediaType}/${mediaId}/videos`;
 
-  fetch(movieDetailsApiUrl, {
+  fetch(mediaDetailsApiUrl, {
     method: "GET",
     headers: {
       Authorization: `Bearer ${config.BEARER_TOKEN}`,
@@ -15,9 +16,11 @@ document.addEventListener("DOMContentLoaded", function () {
     .then((data) => {
       const posterPath = data.poster_path;
       const posterUrl = `https://image.tmdb.org/t/p/w500${posterPath}`;
-      const originalTitle = data.original_title;
+      const originalTitle =
+        mediaType === "movie" ? data.original_title : data.name;
       const overview = data.overview;
-      const releaseDate = data.release_date;
+      const releaseDate =
+        mediaType === "movie" ? data.release_date : data.first_air_date;
       const genres = data.genres.map((genre) => genre.name).join(", ");
 
       document.getElementById("movie-title").textContent = originalTitle;
@@ -41,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
       fetchTrailer(trailerApiUrl);
     })
     .catch((error) => {
-      console.error("Error fetching the movie details:", error);
+      console.error("Error fetching the media details:", error);
     });
 
   function fetchTrailer(apiUrl) {

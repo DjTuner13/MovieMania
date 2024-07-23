@@ -14,6 +14,13 @@
     <header>
       <nav>
         <div class="logo"><a href="index.html">Movie Mania</a></div>
+        <!-- 
+      <ul class="nav-links">
+        <li><a href="#trending">Trending</a></li>
+        <li><a href="#top-rated">Top Rated</a></li>
+        <li><a href="#new-releases">New Releases</a></li>
+      </ul>
+      -->
         <div class="search-bar">
           <form id="searchForm">
             <input
@@ -26,6 +33,9 @@
           </form>
         </div>
         <div class="user-options">
+          <button class="watchlist-btn" id="watchlist-button">
+            My WatchList
+          </button>
           <div class="dropdown">
             <button class="dropbtn">
               Hi, <span id="user-first-name">User</span>
@@ -41,6 +51,8 @@
       <div class="watchlist-container-outer">
         <h1>My Watchlist</h1>
         <div id="watchlist-container" class="watchlist-container"></div>
+        <div id="error-message" class="error-message"></div>
+        <!-- Error message display -->
       </div>
     </div>
 
