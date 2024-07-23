@@ -13,7 +13,7 @@ body {
   background-image: url("blur.png");
   background-size: cover;
   background-position: center;
-} 
+}
 
 /* Fixed navigation bar styles */
 header {
@@ -384,21 +384,27 @@ h1 {
 }
 
 .movie-card .movie-info h3 {
-  margin: 0;
+  margin: 0 0 10px 0; /* Add bottom margin to create space between title and button */
   font-size: 18px;
 }
 
-.movie-card .movie-info p {
-  font-size: 14px;
-  color: #93a1a1;
+.delete-button {
+  background-color: #dc3545;
+  color: #fdf6e3;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  margin-top: 10px; /* Add top margin to create space between title and button */
+  transition: background-color 0.3s ease;
 }
 
-.movie-card:hover {
-  transform: scale(1.05);
+.delete-button:hover {
+  background-color: #c82333;
 }
 
 /* Search page styles */
-
 .search-body {
   font-family: "Poppins", "Open Sans", sans-serif;
   background-image: url("glassBlur.jpg");
@@ -493,6 +499,7 @@ h1 {
   background-color: #b58900; /* Changes the background color on hover */
   color: #fdf6e3; /* Changes the text color on hover */
 }
+
 #back-button {
   background-color: #268bd2;
   color: #fdf6e3;
@@ -519,7 +526,7 @@ h1 {
   background-size: cover;
   background-position: center;
   color: #ffffff;
-} 
+}
 
 .welcome-body p {
   margin-bottom: 60px; /* Adjust the value as needed */
@@ -528,4 +535,3 @@ h1 {
 .welcome-body h2 {
   margin-top: 30px; /* Adjust the value as needed */
 }
-
