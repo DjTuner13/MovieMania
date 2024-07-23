@@ -26,11 +26,15 @@ function performSearch(query) {
           ? `https://image.tmdb.org/t/p/w500${result.poster_path}`
           : "static/placeholder.webp";
 
-        const title = result.media_type === 'movie' ? result.title : result.name;
-        const releaseDate = result.release_date || result.first_air_date || "N/A";
+        const title =
+          result.media_type === "movie" ? result.title : result.name;
+        const releaseDate =
+          result.release_date || result.first_air_date || "N/A";
 
         listItem.innerHTML = `
-          <a href="movie.html?id=${result.id}" class="movie-link">
+          <a href="movie.html?id=${result.id}&media_type=${
+          result.media_type
+        }" class="movie-link">
             <img src="${posterUrl}" alt="${title}" class="movie-poster" onerror="this.src='static/placeholder.jpg';">
             <div class="movie-details">
               <h3>${title} (${releaseDate.split("-")[0]})</h3>
