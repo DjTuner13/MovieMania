@@ -8,6 +8,6 @@ document.getElementById("searchForm").addEventListener("submit", function (e) {
 
 document.getElementById("watchlist-button").addEventListener("click", () => {
   window.location.href = "watchlist.html";
-});s
+});
 
 
