@@ -13,7 +13,7 @@ body {
   background-image: url("blur.png");
   background-size: cover;
   background-position: center;
-} 
+}
 
 /* Fixed navigation bar styles */
 header {
@@ -263,6 +263,42 @@ h1 {
 
 #toggle-watchlist {
   width: 100%;
+}
+
+/* Streaming services styles */
+#streaming-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+#streaming-services li {
+  background-color: #002b36;
+  border: 1px solid #268bd2;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+#streaming-services li:hover {
+  background-color: #073642;
+}
+
+#streaming-services img {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+#streaming-services a {
+  text-decoration: none;
+  color: #fdf6e3;
+  font-family: "Open Sans", sans-serif;
 }
 
 /* Modal styles */
@@ -535,6 +571,7 @@ h1 {
   font-size: 20px;
 } 
 
+
 .welcome-body p {
   margin-bottom: 60px; /* Adjust the value as needed */
 }
@@ -542,4 +579,3 @@ h1 {
 .welcome-body h2 {
   margin-top: 100px; /* Adjust the value as needed */
 }
-
