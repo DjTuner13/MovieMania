@@ -1,50 +1,49 @@
 function performSearch(query) {
   const apiKey = config.API_KEY;
-  const url = `https://api.themoviedb.org/3/search/movie?api_key=${apiKey}&query=${query}`;
+  const url = `https://api.themoviedb.org/3/search/multi?api_key=${apiKey}&query=${query}`;
 
   fetch(url)
     .then((response) => {
       if (!response.ok) {
-        throw new Error("Failed to fetch movies.");
+        throw new Error("Failed to fetch results.");
       }
       return response.json();
     })
     .then((data) => {
-      const movies = data.results;
+      const results = data.results;
       const movieList = document.getElementById("movieList");
       movieList.innerHTML = "";
 
-      if (movies.length === 0) {
-        movieList.innerHTML = "<li>No movies found.</li>";
+      if (results.length === 0) {
+        movieList.innerHTML = "<li>No results found.</li>";
         return;
       }
 
-      movies.forEach((movie) => {
-        const movieItem = document.createElement("li");
-        movieItem.className = "movie-item";
-        const posterUrl = movie.poster_path
-          ? `https://image.tmdb.org/t/p/w500${movie.poster_path}`
+      results.forEach((result) => {
+        const listItem = document.createElement("li");
+        listItem.className = "movie-item";
+        const posterUrl = result.poster_path
+          ? `https://image.tmdb.org/t/p/w500${result.poster_path}`
           : "static/placeholder.webp";
 
-        movieItem.innerHTML = `
-          <a href="movie.html?id=${movie.id}" class="movie-link">
-            <img src="${posterUrl}" alt="${
-          movie.title
-        }" class="movie-poster" onerror="this.src='static/placeholder.jpg';">
+        const title = result.media_type === 'movie' ? result.title : result.name;
+        const releaseDate = result.release_date || result.first_air_date || "N/A";
+
+        listItem.innerHTML = `
+          <a href="movie.html?id=${result.id}" class="movie-link">
+            <img src="${posterUrl}" alt="${title}" class="movie-poster" onerror="this.src='static/placeholder.jpg';">
             <div class="movie-details">
-              <h3>${movie.title} (${
-          movie.release_date ? movie.release_date.split("-")[0] : "N/A"
-        })</h3>
-              <p>${movie.overview}</p>
+              <h3>${title} (${releaseDate.split("-")[0]})</h3>
+              <p>${result.overview}</p>
             </div>
           </a>
         `;
-        movieList.appendChild(movieItem);
+        movieList.appendChild(listItem);
       });
     })
     .catch((error) => {
       console.error("Error:", error);
-      alert("An error occurred while searching for movies.");
+      alert("An error occurred while searching for results.");
     });
 }
 
