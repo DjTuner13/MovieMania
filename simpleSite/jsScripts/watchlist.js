@@ -47,15 +47,14 @@ function displayWatchlist(watchlist) {
     movieElement.innerHTML = `
       <img src="${movie.moviePreviewUrl}" alt="${movie.movieInfo}" data-id="${movie.movieID}">
       <div class="movie-info">
-        <h3>${movie.movieID}</h3>
-        <p>${movie.movieInfo}</p>
+        <h3>${movie.movieInfo}</h3>
         <button class="delete-button" data-id="${movie.movieID}">Delete</button>
       </div>
     `;
 
     movieElement.querySelector("img").addEventListener("click", function () {
       const movieId = this.getAttribute("data-id");
-      window.location.href = `movie.html?id=${movieId}`;
+      window.location.href = `movie.html?id=${movieId}&media_type=movie`;
     });
 
     movieElement
@@ -99,7 +98,7 @@ async function deleteMovieFromWatchlist(movieId) {
 
     if (user) {
       user.watchMovieList = user.watchMovieList.filter(
-        (movie) => movie.movieID !== parseInt(movieId)
+        (movie) => String(movie.movieID) !== String(movieId)
       );
 
       const updateResponse = await fetch(jsonbinUrl, {
