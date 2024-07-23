@@ -14,11 +14,24 @@
     <header>
       <nav>
         <div class="logo"><a href="index.html">Movie Mania</a></div>
+        <!-- 
         <ul class="nav-links">
-          <li><a href="#">Trending</a></li>
-          <li><a href="#">Top Rated</a></li>
-          <li><a href="#">New Releases</a></li>
+          <li><a href="#trending">Trending</a></li>
+          <li><a href="#top-rated">Top Rated</a></li>
+          <li><a href="#new-releases">New Releases</a></li>
         </ul>
+        -->
+        <div class="search-bar">
+          <form id="searchForm">
+            <input
+              type="text"
+              id="query"
+              placeholder="Search for a movie..."
+              required
+            />
+            <button type="submit">Search</button>
+          </form>
+        </div>
         <div class="user-options">
           <button class="watchlist-btn" id="watchlist-button">
             My WatchList
@@ -31,17 +44,6 @@
               <a href="#" id="sign-out">Sign Out</a>
             </div>
           </div>
-        </div>
-        <div class="search-bar">
-          <form id="searchForm">
-            <input
-              type="text"
-              id="query"
-              placeholder="Search for a movie..."
-              required
-            />
-            <button type="submit">Search</button>
-          </form>
         </div>
       </nav>
     </header>
@@ -99,7 +101,7 @@
         <div id="reality-tv-container" class="movies-container"></div>
       </div>
     </div>
-
+  
     <script src="jsScripts/config.js"></script>
     <script src="jsScripts/getJsonData.js"></script>
     <script src="jsScripts/setUserName.js"></script>
