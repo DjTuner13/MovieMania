@@ -254,6 +254,42 @@ h1 {
   width: 100%;
 }
 
+/* Streaming services styles */
+#streaming-services {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style-type: none;
+  padding: 0;
+}
+
+#streaming-services li {
+  background-color: #002b36;
+  border: 1px solid #268bd2;
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  transition: background-color 0.3s ease;
+}
+
+#streaming-services li:hover {
+  background-color: #073642;
+}
+
+#streaming-services img {
+  width: 24px;
+  height: 24px;
+  margin-right: 8px;
+  border-radius: 4px;
+}
+
+#streaming-services a {
+  text-decoration: none;
+  color: #fdf6e3;
+  font-family: "Open Sans", sans-serif;
+}
+
 /* Modal styles */
 .modal {
   display: none;
@@ -384,27 +420,21 @@ h1 {
 }
 
 .movie-card .movie-info h3 {
-  margin: 0 0 10px 0; /* Add bottom margin to create space between title and button */
+  margin: 0;
   font-size: 18px;
 }
 
-.delete-button {
-  background-color: #dc3545;
-  color: #fdf6e3;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-top: 10px; /* Add top margin to create space between title and button */
-  transition: background-color 0.3s ease;
+.movie-card .movie-info p {
+  font-size: 14px;
+  color: #93a1a1;
 }
 
-.delete-button:hover {
-  background-color: #c82333;
+.movie-card:hover {
+  transform: scale(1.05);
 }
 
 /* Search page styles */
+
 .search-body {
   font-family: "Poppins", "Open Sans", sans-serif;
   background-image: url("glassBlur.jpg");
@@ -499,7 +529,6 @@ h1 {
   background-color: #b58900; /* Changes the background color on hover */
   color: #fdf6e3; /* Changes the text color on hover */
 }
-
 #back-button {
   background-color: #268bd2;
   color: #fdf6e3;
