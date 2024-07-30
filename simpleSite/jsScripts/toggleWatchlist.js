@@ -35,17 +35,20 @@ document.addEventListener("DOMContentLoaded", async () => {
       throw new Error("User not found.");
     }
 
-    const itemExists = user.watchMovieList.some(
-      (item) => item.mediaID === parseInt(mediaId) && item.mediaType === mediaType
-    );
+    const updateButtonState = () => {
+      const itemExists = user.watchMovieList.some(
+        (item) => item.mediaID === parseInt(mediaId) && item.mediaType === mediaType
+      );
+      toggleWatchlistButton.textContent = itemExists ? "Remove from Watchlist" : "Add to Watchlist";
+    };
 
-    if (itemExists) {
-      toggleWatchlistButton.textContent = "Remove from Watchlist";
-    } else {
-      toggleWatchlistButton.textContent = "Add to Watchlist";
-    }
+    updateButtonState();
 
     toggleWatchlistButton.addEventListener("click", async () => {
+      const itemExists = user.watchMovieList.some(
+        (item) => item.mediaID === parseInt(mediaId) && item.mediaType === mediaType
+      );
+
       if (itemExists) {
         user.watchMovieList = user.watchMovieList.filter(
           (item) => item.mediaID !== parseInt(mediaId) || item.mediaType !== mediaType
@@ -73,7 +76,7 @@ document.addEventListener("DOMContentLoaded", async () => {
             : "",
           mediaInfo: mediaData.overview || "",
           mediaGenre: mediaData.genres.map((genre) => genre.name).join(", "),
-          mediaTitle: mediaType === "movie" ? mediaData.title : mediaData.name
+          mediaTitle: mediaType === "movie" ? mediaData.title : mediaData.name,
         };
 
         user.watchMovieList.push(mediaDetails);
@@ -89,9 +92,7 @@ document.addEventListener("DOMContentLoaded", async () => {
       });
 
       if (updateResponse.ok) {
-        toggleWatchlistButton.textContent = itemExists
-          ? "Add to Watchlist"
-          : "Remove from Watchlist";
+        updateButtonState();
       } else {
         alert(
           `Failed to ${itemExists ? "remove item from" : "add item to"} watchlist.`
