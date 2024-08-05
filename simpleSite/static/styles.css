@@ -15,7 +15,6 @@ body {
   background-position: center;
 }
 
-/* Fixed navigation bar styles */
 header {
   background-color: #073642;
   color: #fdf6e3;
@@ -340,10 +339,9 @@ h1 {
 
 /* Dropdown and watchlist button styles */
 .user-options {
-  display: flex; 
+  display: flex;
   align-items: left;
 }
-
 
 .watchlist-btn,
 .dropbtn,
@@ -358,7 +356,6 @@ h1 {
   font-size: 16px;
   margin-right: 10px;
   transition: background-color 0.3s ease;
-    
 }
 
 .watchlist-btn:hover,
@@ -455,17 +452,16 @@ h1 {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 100px 20px 20px; /* Adjusted padding to account for fixed header */
+  padding: 100px 20px 20px;
   margin: 0;
   width: 100vw;
-  min-height: 100vh; /* Ensure it covers the full viewport height */
+  min-height: 100vh;
   box-sizing: border-box;
 }
 
 .search-form {
   margin-top: 20px;
   margin-bottom: 20px;
-
 }
 
 .search-input {
@@ -475,9 +471,9 @@ h1 {
   border-radius: 4px;
   font-size: 16px;
   font-family: "Open Sans", sans-serif;
-  background-color: #073642; /* Darker background */
-  color: #fdf6e3; /* Light text color */
-  width: 300px; /* Adjust the width as needed */
+  background-color: #073642;
+  color: #fdf6e3;
+  width: 300px;
 }
 
 .search-button {
@@ -498,9 +494,9 @@ h1 {
 .movie-list {
   list-style-type: none;
   padding: 0;
-  width: 90%; /* Makes the list wider, taking 60% of the container width */
-  margin-left: 20%; /* Adds 20% padding on the left */
-  margin-right: 20%; /* Adds 20% padding on the right */
+  width: 90%;
+  margin-left: 20%;
+  margin-right: 20%;
 }
 
 .movie-item {
@@ -518,7 +514,7 @@ h1 {
   flex: 1;
   background-color: #073642; /* Darker background for better contrast */
   color: #fdf6e3; /* Light text color for readability */
-  padding: 20px; /* Increased padding for better spacing */
+  padding: 20px;
   border-radius: 8px;
 }
 
@@ -533,14 +529,14 @@ h1 {
   color: #073642; /* Darker text color for better contrast */
   display: flex;
   align-items: center;
-  padding: 10px; /* Adds some padding around the link */
-  border-radius: 8px; /* Adds rounded corners to the link */
-  transition: background-color 0.3s ease; /* Adds a transition effect for background color */
+  padding: 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease;
 }
 
 .movie-link:hover {
-  background-color: #b58900; /* Changes the background color on hover */
-  color: #fdf6e3; /* Changes the text color on hover */
+  background-color: #b58900;
+  color: #fdf6e3;
 }
 #back-button {
   background-color: #268bd2;
@@ -569,13 +565,12 @@ h1 {
   background-position: center;
   color: #ffffff;
   font-size: 20px;
-} 
-
+}
 
 .welcome-body p {
-  margin-bottom: 60px; /* Adjust the value as needed */
+  margin-bottom: 60px;
 }
 
 .welcome-body h2 {
-  margin-top: 100px; /* Adjust the value as needed */
+  margin-top: 100px;
 }
